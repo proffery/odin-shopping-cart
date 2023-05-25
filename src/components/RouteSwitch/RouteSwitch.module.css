@@ -1,0 +1,45 @@
+.nav {
+  display: flex;
+  /* flex-wrap: wrap; */
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  box-shadow: var(--shadow);
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.nav ul li {
+  display: flex;
+  margin-left: 4rem;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.cartNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .2rem;
+}
+
+.cartImg {
+  align-self: center;
+  display: flex;
+  width: 2rem;
+  filter: invert(80%);
+}
