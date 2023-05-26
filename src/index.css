@@ -3,10 +3,10 @@
   line-height: 1.5;
   font-weight: 400;
   --main-font: clamp(16px, calc(16px + (28 - 16) * ((100vw - 360px) / 1560)), 28px);
-  --font-color: rgba(255, 255, 255, 0.87);
-  --background-color-main: #534e4e;
-  --background-color-block: rgba(255, 255, 255, 0.822);
-  --shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  --font-color: rgba(219, 214, 214, 0.87);
+  --background-color-main: #534e4ecc;
+  --background-color-block: rgba(153, 134, 134, 0.822);
+  --shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   --gradient: linear-gradient(90deg, rgba(36, 36, 44, 0.651) 0%, rgba(237, 237, 240, 0.329) 35%, rgba(36, 37, 37, 0.397) 100%);
 }
 
@@ -20,7 +20,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--font-color);
   text-decoration: inherit;
 }
 a:hover {
@@ -33,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--background-color-main);
+  background-color: var(--background-color-block);
   color: var(--font-color);
   font-size: var(--main-font);
 }
@@ -50,14 +50,47 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--background-color-main);
   cursor: pointer;
+  color: var(--font-color);
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--font-color);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.footer {
+  position: sticky;
+  top: 95%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--main-font) - 7px);
+  text-align: center;
+  padding: .5rem;
+  margin-top: 1rem;
+}
+
+.footer p {
+  display: flex;
+  align-items: center;
+}
+
+.footer a {
+  color: var(--font-color);
+  margin: .2rem;
+}
+
+.github-logo {
+  height: 1rem;
+  filter: invert();
+  transition: all .3s;
+}
+.github-logo:hover {
+  transform: rotate(360deg);
 }

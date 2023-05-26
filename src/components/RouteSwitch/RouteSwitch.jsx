@@ -3,13 +3,16 @@ import styles from './RouteSwitch.module.css'
 import Home from '../screens/home/Home'
 import Shop from '../screens/shop/Shop'
 import Contact from '../screens/contact/Contact'
+import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import { useState } from 'react'
 
 const RouteSwitch = () => {
   const [itemsInCard, setItemsInCard] = useState(0)
+  const [cartVisibility, setCartVisibility] = useState('hidden')
 
   const openCard = () => {
+    cartVisibility === 'hidden' ? setCartVisibility('visible') : setCartVisibility('hidden')
     
   }
 
@@ -33,9 +36,13 @@ const RouteSwitch = () => {
             {itemsInCard > 0 && (
               <div className={styles.cartNum}>{itemsInCard}</div>
             )}
+            <div className={styles.bar} style={{
+              visibility: cartVisibility,
+            }}>
+              <Cart onClick={openCard}/>
+            </div>
           </div>
         </div>
-
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />

@@ -1,6 +1,6 @@
 .nav {
   display: flex;
-  /* flex-wrap: wrap; */
+  background-color: var(--background-color-main);
   text-align: center;
   align-items: center;
   justify-content: space-between;
@@ -42,4 +42,9 @@
   display: flex;
   width: 2rem;
   filter: invert(80%);
+}
+
+.bar {
+  display: flex;
+  z-index: 0;
 }

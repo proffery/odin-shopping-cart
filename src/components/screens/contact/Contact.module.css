@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+    z-index: -1;
+    margin: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    text-align: left;
+    min-width: 30vw;
+}
+
+.group textarea {
+    display: flex;
+    min-width: 30vw;
+    min-height: 10vh;
+    resize: vertical;
+}

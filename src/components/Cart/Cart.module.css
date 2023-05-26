@@ -1,0 +1,11 @@
+.container {
+    position: absolute;
+    display: flex;
+    width: 40vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    box-shadow: var(--shadow);
+    background-color: var(--background-color-main);
+    z-index: 0;
+}
