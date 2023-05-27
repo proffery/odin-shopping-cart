@@ -4,7 +4,7 @@
   font-weight: 400;
   --main-font: clamp(16px, calc(16px + (28 - 16) * ((100vw - 360px) / 1560)), 28px);
   --font-color: rgba(219, 214, 214, 0.87);
-  --background-color-main: #534e4ecc;
+  --background-color-main: #534e4ec0;
   --background-color-block: rgba(153, 134, 134, 0.822);
   --shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   --gradient: linear-gradient(90deg, rgba(36, 36, 44, 0.651) 0%, rgba(237, 237, 240, 0.329) 35%, rgba(36, 37, 37, 0.397) 100%);
@@ -24,7 +24,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #e2d843;
 }
 
 body {
@@ -56,7 +56,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: var(--font-color);
+  border-color: #e2d843;
 }
 button:focus,
 button:focus-visible {
@@ -74,6 +74,7 @@ button:focus-visible {
   text-align: center;
   padding: .5rem;
   margin-top: 1rem;
+  z-index: 0;
 }
 
 .footer p {
