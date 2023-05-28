@@ -4,7 +4,7 @@
   font-weight: 400;
   --main-font: clamp(16px, calc(16px + (28 - 16) * ((100vw - 360px) / 1560)), 28px);
   --font-color: rgba(219, 214, 214, 0.87);
-  --ten-percent-color: #e2d843;
+  --ten-percent-color: #dfd65d;
   --background-color-main: #534e4ec0;
   --background-color-block: rgba(153, 134, 134, 0.822);
   --shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -55,14 +55,13 @@ button {
   background-color: var(--background-color-main);
   cursor: pointer;
   color: var(--font-color);
-  transition: border-color 0.25s;
+  transition: all ease-in 0.1s;
+  margin: .5rem;
 }
 button:hover {
   border-color: var(--ten-percent-color);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: var(--ten-percent-color);
+  color: var(--background-color-main);
 }
 
 .footer {
@@ -95,4 +94,24 @@ button:focus-visible {
 }
 .github-logo:hover {
   transform: rotate(360deg);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

@@ -1,12 +1,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    transition: all ease-in .2s;
-    border: 1px solid var(--background-color-main);
+    box-shadow: var(--shadow);
+    transition: all ease-out .3s;
 }
 
 .container:hover {
-    box-shadow: var(--shadow);
+    transform: scale(1.1);
 }
 
 .imgHolder {
@@ -17,9 +17,16 @@
 
 .description {
     display: flex;
-    flex-direction: column;
-    padding: .5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: .5rem;
     background-color: var(--background-color-main);
+    transition: all ease-in .3s;
+}
+
+.description:hover {
+    background-color: var(--ten-percent-color);
+    color: var(--background-color-main);
 }
 
 .header {
@@ -27,11 +34,29 @@
 }
 
 .img {
-    display: flex;
     height: 30vmin;
     width: 45vmin;
     pointer-events: none;
     background-image: url('/assets/img/category/default-category.svg');
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.icon {
+    display: flex;
+    height: 2rem;
+    margin: .5rem;
+    filter: invert(60%);
+    transition: all ease-out .2s;
+}
+
+.icon:hover {
+    transform: scale(1.5);
+    filter: invert(30%);
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
