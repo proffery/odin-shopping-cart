@@ -2,13 +2,12 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 30vw;
     height: 100vh;
     top: 0;
     right: 0;
     box-shadow: var(--shadow);
     background-color: var(--background-color-main);
-    z-index: 1;
     padding: 1rem;
 }
 

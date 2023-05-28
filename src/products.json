@@ -1,44 +1,58 @@
 [
     {
       "id": 0,
-      "title": "Product 0",
-      "description": "Some product description 0",
+      "title": "Entryway Door Mat",
+      "description": "Ornamental Brick, 2'x 4', Brown",
       "category": "home",
       "price": 26
     },
     {
       "id": 1,
-      "title": "Product 1",
-      "description": "Some product description 1",
+      "title": "MOJE AUTO",
+      "description": "Car cosmetic KIT",
       "category": "car",
       "price": 82
     },
     {
       "id": 2,
-      "title": "Product 2",
-      "description": "Some product description 2",
+      "title": "Pioneer DJ",
+      "description": "Professional DJ controller",
       "category": "music",
-      "price": 41
+      "price": 4100
     },
     {
       "id": 3,
-      "title": "Product 3",
-      "description": "Some product description 3",
+      "title": "Kindle e-book",
+      "description": "Amazon Kindle reader",
       "category": "electronics",
-      "price": 78
+      "price": 183
     },
     {
       "id": 4,
-      "title": "Product 4",
-      "description": "Some product description 4",
+      "title": "t-shirt",
+      "description": "Blue t-shirt",
       "category": "clothing",
       "price": 59
     },
     {
         "id": 5,
-        "title": "Product 5",
-        "description": "Some product description 4",
+        "title": "Fitness mat",
+        "description": "Color: Pink, 160cm x 58cm x 7mm",
         "category": "sport",
         "price": 92
+      },
+      {
+        "id": 6,
+        "title": "baseball cap",
+        "description": "Gray baseball cap",
+        "category": "clothing",
+        "price": 9
+      },
+      {
+        "id": 7,
+        "title": "Borygo Rim",
+        "description": "Car cosmetic KIT",
+        "category": "car",
+        "price": 75
       }
   ]

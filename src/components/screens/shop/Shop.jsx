@@ -14,14 +14,14 @@ const Shop = (prop) => {
             <h1 className={styles.header}>Categories</h1>
             <div className={styles.categories}>
                 {categories.map(category =>
-                    <div key={'cat' + categories.indexOf(category)} className={styles.category}>
-                        <Link  to={'/shop/' + category }>
+                    <Link key={'cat' + categories.indexOf(category)} to={'/shop/' + category }>
+                        <div className={styles.category}>
                             <div className={styles.imgHolder}>
                                 <img className={styles.img} src={'/assets/img/category/' + category + '.jpg'} alt={category} />
+                                <div className={styles.name}>{category}</div>
                             </div>
-                            <div className={styles.name}>{category}</div>
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                 )}
             </div>
         </div>

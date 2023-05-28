@@ -19,7 +19,6 @@
 }
 
 .category {
-    filter: grayscale(80%);
     display: flex;
     transition: all ease-in .1s;
     margin-right: 1.5rem;
@@ -29,6 +28,13 @@
 .imgHolder {
     display: flex;
     flex-direction: column;
+    filter: grayscale(80%);
+    transition: all ease-out .2s;
+}
+
+.imgHolder:hover {
+    filter: none;
+    transform: scale(1.1);
 }
 
 .name {
@@ -46,12 +52,8 @@
     height: 30vmin;
     width: 45vmin;
     pointer-events: none;
-    background-image: url('/assets/img/category/default-category.jpg');
+    background-image: url('/assets/img/category/default-category.svg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.category:hover {
-    filter: none
+    box-shadow: var(--shadow);
 }
