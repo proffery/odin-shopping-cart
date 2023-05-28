@@ -4,12 +4,16 @@ import styles from './RouteSwitch.module.css'
 import Home from '../screens/home/Home'
 import Shop from '../screens/shop/Shop'
 import Contact from '../screens/contact/Contact'
+import ProductList from '../screens/productList/ProductList'
+import NotFound from '../screens/notFound/NotFound'
 import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import products from '../../products.json'
 
 const RouteSwitch = () => {
+  // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(eval(products))
+  // eslint-disable-next-line no-unused-vars
   const [itemsInCard, setItemsInCard] = useState([])
   const [cartVisibility, setCartVisibility] = useState('hidden')
   const openCard = () => {
@@ -47,8 +51,9 @@ const RouteSwitch = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop prop={{productList}}/>} />
-          {/* <Route path='/shop/:id' element={<Shop prop={{productList}}/>} /> */}
+          <Route path='/shop/:category' element={<ProductList prop={{productList}}/>} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

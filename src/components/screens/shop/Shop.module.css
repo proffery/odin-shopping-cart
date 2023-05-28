@@ -46,6 +46,10 @@
     height: 30vmin;
     width: 45vmin;
     pointer-events: none;
+    background-image: url('/assets/img/category/default-category.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .category:hover {

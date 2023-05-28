@@ -33,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-width: 300px;
   background-color: var(--background-color-block);
   color: var(--font-color);
   font-size: var(--main-font);
@@ -73,7 +74,6 @@ button:focus-visible {
   font-size: calc(var(--main-font) - 7px);
   text-align: center;
   padding: .5rem;
-  margin-top: 1rem;
   z-index: 0;
 }
 
