@@ -21,12 +21,11 @@
     flex-direction: column;
     margin-bottom: .5rem;
     text-align: left;
-    min-width: 30vw;
+    width: clamp(200px, 25rem, 80vw); 
 }
 
 .group textarea {
     display: flex;
-    min-width: 30vw;
     min-height: 10vh;
     resize: vertical;
 }

@@ -36,6 +36,8 @@
 .img {
     height: 30vmin;
     width: 45vmin;
+    min-width: 12rem;
+    min-height: 8rem;
     pointer-events: none;
     background-image: url('/assets/img/category/default-category.svg');
     background-position: center;

@@ -17,6 +17,9 @@ const Cart = (prop) => {
     
     return (
         <div className={styles.container}>
+            {prop.prop.itemsInCart.length > 0 && 
+                <h3>Shopping Cart</h3>
+            }
             {prop.prop.itemsInCart.map(product =>
                 <div className={styles.item} key={'cartProd' + uniqid()}>
                     <div className={styles.left}>
