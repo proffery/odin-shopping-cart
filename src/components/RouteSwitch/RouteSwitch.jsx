@@ -16,6 +16,8 @@ const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [itemsInCart, setItemsInCart] = useState([])
   const [cartVisibility, setCartVisibility] = useState('scale(0)')
+  const [totalPrice, setTotalPrice] = useState(0)
+
 
   const openCart = () => {
     cartVisibility === 'scale(0)' && setCartVisibility('scale(1)')
@@ -25,8 +27,26 @@ const RouteSwitch = () => {
     cartVisibility === 'scale(1)' && setCartVisibility('scale(0)')
   }
 
-  const addToCart = (item) => {
-    setItemsInCart([...itemsInCart, item])
+  const addToCart = (product) => {
+    setItemsInCart([...itemsInCart, product])
+    calculateTotalPrice()
+  }
+
+  const deleteFromCart = (id) => {
+    const index = itemsInCart.findIndex((item) => item.id === parseFloat(id))
+    if (index !== -1) {
+      const updatedData = [...itemsInCart]
+      updatedData.splice(index, 1)
+      setItemsInCart(updatedData)
+    }
+    calculateTotalPrice()
+  }
+
+  const calculateTotalPrice = () => {
+    setTotalPrice(0)
+    itemsInCart.forEach(element => {
+      setTotalPrice(prev => prev + element.price)
+    })
   }
 
   return (
@@ -52,7 +72,7 @@ const RouteSwitch = () => {
             <div className={styles.bar} style={{
               transform: cartVisibility,
             }}>
-              <Cart prop={{itemsInCart}} closeCart={closeCart}/>
+              <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
             </div>
           </div>
         </div>

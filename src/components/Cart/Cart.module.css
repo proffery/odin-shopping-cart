@@ -20,7 +20,15 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     transition: all ease-in .2s;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .item:hover {
