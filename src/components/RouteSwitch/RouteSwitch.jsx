@@ -3,7 +3,7 @@ import { useState } from 'react'
 import styles from './RouteSwitch.module.css'
 import Home from '../screens/Home/Home'
 import Shop from '../screens/Shop/Shop'
-import Contact from '../screens/Contact/Contact'
+import Contact from '../screens/contact/Contact'
 import ProductList from '../screens/ProductList/ProductList'
 import NotFound from '../screens/NotFound/NotFound'
 import Cart from '../Cart/Cart'
@@ -14,11 +14,19 @@ const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(eval(products))
   // eslint-disable-next-line no-unused-vars
-  const [itemsInCard, setItemsInCard] = useState([])
-  const [cartVisibility, setCartVisibility] = useState('hidden')
-  const openCard = () => {
-    cartVisibility === 'hidden' ? setCartVisibility('visible') : setCartVisibility('hidden')
-    
+  const [itemsInCart, setItemsInCart] = useState([])
+  const [cartVisibility, setCartVisibility] = useState('scale(0)')
+
+  const openCart = () => {
+    cartVisibility === 'scale(0)' && setCartVisibility('scale(1)')
+  }
+
+  const closeCart = () => {
+    cartVisibility === 'scale(1)' && setCartVisibility('scale(0)')
+  }
+
+  const addToCart = (item) => {
+    setItemsInCart([...itemsInCart, item])
   }
 
   return (
@@ -36,22 +44,22 @@ const RouteSwitch = () => {
               <Link to='/contact'>Contact</Link>
             </li>
           </ul>
-          <div className={styles.cart} onClick={openCard}>
+          <div className={styles.cart} onClick={openCart}>
             <img className={styles.cartImg} src={imgCart} alt='Cart'></img>
-            {itemsInCard.length > 0 && (
-              <div className={styles.cartNum}>{itemsInCard.length}</div>
+            {itemsInCart.length > 0 && (
+              <div className={styles.cartNum}>{itemsInCart.length}</div>
             )}
             <div className={styles.bar} style={{
-              visibility: cartVisibility,
+              transform: cartVisibility,
             }}>
-              <Cart onClick={openCard}/>
+              <Cart prop={{itemsInCart}} closeCart={closeCart}/>
             </div>
           </div>
         </div>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop prop={{productList}}/>} />
-          <Route path='/shop/:category' element={<ProductList prop={{productList}}/>} />
+          <Route path='/shop/:category' element={<ProductList prop={{productList}} addToCart={addToCart}/>} />
           <Route path='/contact' element={<Contact />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

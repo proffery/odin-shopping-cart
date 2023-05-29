@@ -1,8 +1,11 @@
 import styles from './Product.module.css'
 import cartImg from '../../assets/img/cart-variant.svg'
 import cardImg from '../../assets/img/credit-card-outline.svg'
+
 const Product = (prop) => {
-    console.log(prop.prop)
+    const addToCart = () => {
+        prop.addToCart(prop.prop)
+    }
 
     return (
         <div className={styles.container}>
@@ -17,7 +20,7 @@ const Product = (prop) => {
                 </div>
                 <div className={styles.right}>
                     <div>
-                        <img className={styles.icon} src={cartImg} alt="cart" />
+                        <img className={styles.icon} src={cartImg} alt="cart" onClick={addToCart} />
                     </div>
                     <div>
                         <img className={styles.icon} src={cardImg} alt="card" />

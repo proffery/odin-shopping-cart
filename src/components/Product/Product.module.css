@@ -1,12 +1,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow);
     transition: all ease-out .3s;
 }
 
 .container:hover {
-    transform: scale(1.1);
+    box-shadow: var(--shadow);
+    /* transform: scale(1.1); */
 }
 
 .imgHolder {
