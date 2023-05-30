@@ -38,7 +38,7 @@ const Cart = (prop) => {
             )}
             {prop.prop.itemsInCart.length > 0 ? 
                 <h4>Total price: {prop.prop.totalPrice}$</h4> :
-                <h3>Cart is empty...</h3>
+                <h3>Cart is empty</h3>
             }
             <div>
                 {prop.prop.itemsInCart.length > 0 && 

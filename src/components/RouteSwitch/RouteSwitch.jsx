@@ -4,7 +4,7 @@ import styles from './RouteSwitch.module.css'
 import Home from '../screens/Home/Home'
 import Shop from '../screens/Shop/Shop'
 import Contact from '../screens/contact/Contact'
-import ProductList from '../screens/ProductList/ProductList'
+import ProductList from '../screens/productList/ProductList'
 import NotFound from '../screens/NotFound/NotFound'
 import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
@@ -17,7 +17,12 @@ const RouteSwitch = () => {
   const [itemsInCart, setItemsInCart] = useState([])
   const [cartVisibility, setCartVisibility] = useState('scale(0)')
   const [totalPrice, setTotalPrice] = useState(0)
+  const [searchInput, setSearchInput] = useState('')
 
+  const searchChange = (e) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
 
   const openCart = () => {
     cartVisibility === 'scale(0)' && setCartVisibility('scale(1)')
@@ -64,6 +69,7 @@ const RouteSwitch = () => {
               <Link to='/contact'>Contact</Link>
             </li>
           </ul>
+          <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
           <div className={styles.cart} onClick={openCart}>
             <img className={styles.cartImg} src={imgCart} alt='Cart'></img>
             {itemsInCart.length > 0 && (
@@ -76,13 +82,19 @@ const RouteSwitch = () => {
             </div>
           </div>
         </div>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/shop' element={<Shop prop={{productList}}/>} />
-          <Route path='/shop/:category' element={<ProductList prop={{productList}} addToCart={addToCart}/>} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        {searchInput.length > 0 ? 
+          ( 
+            <ProductList prop={{productList, searchInput}} addToCart={addToCart}/>
+          ) : (
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/shop' element={<Shop prop={{productList}}/>} />
+              <Route path='/shop/:category' element={<ProductList prop={{productList, searchInput}} addToCart={addToCart}/>} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          )
+        }
       </BrowserRouter>
     </>
   )

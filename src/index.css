@@ -66,6 +66,35 @@ button:hover {
   border: 1px solid;
 }
 
+input, textarea {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color-main);
+  border: 1px solid var(--background-color-main);
+  color: var(--font-color);
+  height: 1.5rem;
+  padding-left: .2rem;
+}
+
+input::placeholder, textarea::placeholder {
+  text-align: left;
+  color: var(--font-color);
+  padding-left: .1rem;
+}
+
+input:focus, textarea:focus {
+  border: 1px solid var(--ten-percent-color);
+  outline: none;
+}
+
+/* input[required]:invalid, textarea[required]:invalid  {
+  border: 1px solid rgb(184, 94, 94);
+} */
+
+input[required]:valid, textarea[required]:valid {
+  border: 1px solid rgb(97, 184, 94);
+}
+
 .footer {
   position: sticky;
   top: 95%;
