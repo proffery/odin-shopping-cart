@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import styles from './RouteSwitch.module.css'
+import './ActiveLink.css'
 import Home from '../screens/Home/Home'
 import Shop from '../screens/Shop/Shop'
 import Contact from '../screens/contact/Contact'
@@ -60,13 +61,13 @@ const RouteSwitch = () => {
         <div className={styles.nav}>
           <ul>
             <li>
-              <Link to='/'>Home</Link>
+              <NavLink to='/'>Home</NavLink>
             </li>
             <li>
-              <Link to='/shop'>Shop</Link>
+              <NavLink to='/shop'>Shop</NavLink>
             </li>
             <li>
-              <Link to='/contact'>Contact</Link>
+              <NavLink to='/contact'>Contact</NavLink>
             </li>
           </ul>
           <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
