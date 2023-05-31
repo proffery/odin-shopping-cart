@@ -42,9 +42,9 @@ const Cart = (prop) => {
             }
             <div>
                 {prop.prop.itemsInCart.length > 0 && 
-                    <button className={styles.button}>Buy all</button>
+                    <button className={styles.buttonBuyAll}>Buy all</button>
                 }
-                <button className={styles.button} onClick={closeCart}>Close</button>
+                <button className={styles.buttonClose} onClick={closeCart}>Close</button>
 
             </div>
         </div>

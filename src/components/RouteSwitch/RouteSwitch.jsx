@@ -10,13 +10,14 @@ import NotFound from '../screens/NotFound/NotFound'
 import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import products from '../../products.json'
+import { Fade } from 'react-reveal'
 
 const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(eval(products))
   // eslint-disable-next-line no-unused-vars
   const [itemsInCart, setItemsInCart] = useState([])
-  const [cartVisibility, setCartVisibility] = useState('scale(0)')
+  const [cartVisibility, setCartVisibility] = useState('hidden')
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
 
@@ -26,12 +27,16 @@ const RouteSwitch = () => {
   }
 
   const openCart = () => {
-    cartVisibility === 'scale(0)' && setCartVisibility('scale(1)')
+    cartVisibility === 'hidden' && setCartVisibility('visible')
   }
 
   const closeCart = () => {
-    cartVisibility === 'scale(1)' && setCartVisibility('scale(0)')
+    cartVisibility === 'visible' && setCartVisibility('hidden')
   }
+
+  // const openCloseCart = () => {
+  //   cartVisibility === 'hidden' ? setCartVisibility('visible') : setCartVisibility('hidden')
+  // }
 
   const addToCart = (product) => {
     setItemsInCart([...itemsInCart, product])
@@ -76,11 +81,13 @@ const RouteSwitch = () => {
             {itemsInCart.length > 0 && (
               <div className={styles.cartNum}>{itemsInCart.length}</div>
             )}
-            <div className={styles.bar} style={{
-              transform: cartVisibility,
-            }}>
-              <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
-            </div>
+                <div className={styles.bar} style={{
+                  visibility: cartVisibility,
+                }}>
+                    <Fade right when={cartVisibility === 'visible'}>
+                  <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
+              </Fade>
+                </div>
           </div>
         </div>
         {searchInput.length > 0 ? 

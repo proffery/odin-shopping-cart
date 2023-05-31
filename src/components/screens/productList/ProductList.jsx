@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import styles from './ProductList.module.css'
 import Product from '../../Product/Product'
+import Fade from 'react-reveal/Fade'
 
 const ProductList = (prop) => {
     const { category } = useParams() 
@@ -10,7 +11,7 @@ const ProductList = (prop) => {
     
     return (
         <div className={styles.container}>
-            <h1 className={styles.header}>{category}</h1>
+            <h1 className={styles.header}><Fade right cascade>{category}</Fade></h1>
             <div className={styles.products}>
                 {prop.prop.searchInput.length === 0 ? (
                         prop.prop.productList.filter(item => item.category === category).map(product =>

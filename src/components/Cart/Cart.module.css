@@ -1,18 +1,19 @@
 .container {
-    position: absolute;
+    position: static;
     display: flex;
     flex-direction: column;
-    width: 50vw;
-    height: fit-content;
-    top: 0;
+    width: max(40vw, 300px);
+    height: 100vh;
+    top: 3rem;
     right: 0;
     box-shadow: var(--shadow);
     background-color: var(--background-color-main);
     padding: .5rem;
     gap: .5rem;
+    overflow-y: auto;
 }
 
-.button {
+.buttonClose {
     width: fit-content;
 }
 
