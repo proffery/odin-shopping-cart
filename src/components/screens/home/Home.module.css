@@ -1,5 +1,32 @@
 .container {
+    display: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../../../public/assets/img/background.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+.header {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+}
+
+.header h1 {
     display: flex;
-    padding: 1rem;
-    padding-top: 4rem;
+    text-align:inherit;
+    align-items: center;
+    justify-content: left;
+    text-transform: uppercase;
+}
+
+.startShopping {
+    position: relative;
+    top: 100%;
+    left: 0%;
+    transform: translateX(0%);
+    margin-left: 0;
+
 }

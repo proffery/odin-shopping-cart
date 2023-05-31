@@ -96,8 +96,9 @@ input[required]:valid, textarea[required]:valid {
 }
 
 .footer {
-  position: sticky;
-  top: 95%;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
   display: flex;
   align-self: center;
   align-items: center;
@@ -106,6 +107,8 @@ input[required]:valid, textarea[required]:valid {
   text-align: center;
   padding: .5rem;
   z-index: 0;
+  background-color: var(--background-color-main);
+  box-shadow: var(--shadow);
 }
 
 .footer p {

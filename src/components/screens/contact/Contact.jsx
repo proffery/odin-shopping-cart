@@ -31,28 +31,28 @@ const Contact = () => {
                     </div>
                     <button type="submit">Submit</button>
             </form>
-            <div className={styles.icons}>
                 <Flip bottom cascade>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/facebook.png" alt="facebook" />
-                    </a>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/instagram.png" alt="instagram" />
-                    </a>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/tik-tok.png" alt="tik-tok" />
-                    </a>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/twitter.png" alt="twitter" />
-                    </a>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/whatsapp.png" alt="whatsapp" />
-                    </a>
-                    <a href="">
-                        <img className={styles.icon} src="/assets/img/icons/youtube.png" alt="youtube" />
-                    </a>
+                    <div className={styles.icons}>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/facebook.png" alt="facebook" />
+                            </a>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/instagram.png" alt="instagram" />
+                            </a>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/tik-tok.png" alt="tik-tok" />
+                            </a>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/twitter.png" alt="twitter" />
+                            </a>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/whatsapp.png" alt="whatsapp" />
+                            </a>
+                            <a href="">
+                                <img className={styles.icon} src="/assets/img/icons/youtube.png" alt="youtube" />
+                            </a>
+                    </div>
                 </Flip>
-            </div>
         </div>
     )
 }
