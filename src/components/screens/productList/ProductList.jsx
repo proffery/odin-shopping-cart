@@ -11,13 +11,13 @@ const ProductList = (prop) => {
     
     return (
         <div className={styles.container}>
-            <div className={styles.products}>
             {prop.prop.searchInput.length === 0 ?(
                     <h1 className={styles.header}><Fade right cascade>{category}</Fade></h1>
                 ) : (
                     <h1 className={styles.header}><Fade right cascade>Search results</Fade></h1>
                 )
             }
+            <div className={styles.products}>
                 {prop.prop.searchInput.length === 0 ? (
                     prop.prop.productList.filter(item => item.category === category).map(product =>
                         <Product key={'product' + product.id} prop={product} addToCart={addToCart}/>)

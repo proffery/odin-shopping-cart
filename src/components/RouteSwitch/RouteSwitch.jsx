@@ -116,7 +116,7 @@ const RouteSwitch = () => {
               </div>
               ) : (
               <div className={styles.userContainer}>
-                <button onClick={signIn}>Sign in</button>
+                <button onClick={signIn}>Sign in Google</button>
               </div>
             )}
             
