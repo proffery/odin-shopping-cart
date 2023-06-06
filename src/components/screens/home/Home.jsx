@@ -1,5 +1,5 @@
 import styles from './Home.module.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Fade from 'react-reveal/Fade'
 const Home = () => {
 
@@ -14,7 +14,7 @@ const Home = () => {
                 </h1>
                 <p><Fade bottom>Discover a wide range</Fade></p>
                 <p><Fade top cascade>of products for every need.</Fade></p>
-                <button type='button' className={styles.startShopping}><Link to='/shop'>Shop</Link></button>
+                <NavLink to='/shop'><button type='button' className={styles.startShopping}>Shop</button></NavLink>
             </div>
         </div>
     )

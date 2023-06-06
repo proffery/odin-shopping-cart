@@ -18,12 +18,6 @@ import {
   signOut,
 } from 'firebase/auth'
 
-import { initializeApp } from 'firebase/app'
-import { getFirebaseConfig } from '../../firebase/firebase-config'
-
-const firebaseAppConfig = getFirebaseConfig();
-initializeApp(firebaseAppConfig);
-
 const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(eval(products))
