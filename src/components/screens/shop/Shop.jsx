@@ -20,7 +20,7 @@ const Shop = (prop) => {
                             <div className={styles.category}>
                                 <div className={styles.imgHolder}>
                         <Bounce top cascade>
-                                    <img className={styles.img} src={'/assets/img/category/' + category + '.jpg'} alt={category} />
+                                    <img className={styles.img} src={'./assets/img/category/' + category + '.jpg'} alt={category} />
                                     <div className={styles.name}>{category}</div>
                         </Bounce>
                                 </div>

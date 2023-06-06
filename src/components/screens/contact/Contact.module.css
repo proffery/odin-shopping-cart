@@ -9,6 +9,12 @@
     padding-top: 4rem;
 }
 
+.header {
+    display: flex;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
 .form {
     display: flex;
     flex-direction: column;

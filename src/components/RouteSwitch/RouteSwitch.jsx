@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import styles from './RouteSwitch.module.css'
 import './ActiveLink.css'
 import Home from '../screens/Home/Home'
@@ -11,6 +11,19 @@ import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import products from '../../products.json'
 import { Fade } from 'react-reveal'
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth'
+
+import { initializeApp } from 'firebase/app'
+import { getFirebaseConfig } from '../../firebase/firebase-config'
+
+const firebaseAppConfig = getFirebaseConfig();
+initializeApp(firebaseAppConfig);
 
 const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
@@ -18,8 +31,42 @@ const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [itemsInCart, setItemsInCart] = useState([])
   const [cartVisibility, setCartVisibility] = useState('hidden')
+  //const [signInVisibility, setSignInVisibility] = useState('visible')
+  //const [signOutVisibility, setSignOutVisibility] = useState('hidden')
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
+  
+  useEffect(() => {
+
+}, [onAuthStateChanged])
+
+  async function signIn() {
+    // Sign in Firebase using popup auth and Google as the identity provider.
+    var provider = new GoogleAuthProvider();
+    await signInWithPopup(getAuth(), provider)
+      .then(console.log(getAuth().currentUser.displayName + ' is in'))
+  }
+
+  function signOutUser() {
+    // Sign out of Firebase.
+    console.log(getAuth().currentUser.displayName + ' is out')
+    signOut(getAuth());
+  }
+
+  function isUserSignedIn() {
+    // Return true if a user is signed-in.
+    return !!getAuth().currentUser;
+  }
+
+  function getUserName() {
+    // Return the user's display name.
+    return getAuth().currentUser.displayName;
+  }
+
+  function getProfilePicUrl() {
+    // Return the user's profile pic URL.
+    return getAuth().currentUser.photoURL ||'/assets/img/category/default-category.svg';
+  }
 
   const searchChange = (e) => {
     e.preventDefault()
@@ -62,7 +109,7 @@ const RouteSwitch = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <div className={styles.nav}>
           <ul>
             <li>
@@ -76,7 +123,21 @@ const RouteSwitch = () => {
             </li>
           </ul>
           <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
-          <div className={styles.cart} onClick={openCart}>
+            {isUserSignedIn() ? (
+              <div className={styles.userContainer}>
+                <div className={styles.userInfo}>
+                  <img className={styles.userImg} src={getProfilePicUrl()} alt='User photo' />
+                  <h4>{getUserName()}</h4>
+                </div>
+                <button onClick={signOutUser}>Sign out</button>
+              </div>
+              ) : (
+              <div className={styles.userContainer}>
+                <button onClick={signIn}>Sign in</button>
+              </div>
+            )}
+            
+            <div className={styles.cart} onClick={openCart}>
             <img className={styles.cartImg} src={imgCart} alt='Cart'></img>
             {itemsInCart.length > 0 && (
               <div className={styles.cartNum}>{itemsInCart.length}</div>
@@ -85,8 +146,8 @@ const RouteSwitch = () => {
                   visibility: cartVisibility,
                 }}>
                     <Fade right when={cartVisibility === 'visible'}>
-                  <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
-              </Fade>
+                      <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
+                    </Fade>
                 </div>
           </div>
         </div>
@@ -103,7 +164,7 @@ const RouteSwitch = () => {
             </Routes>
           )
         }
-      </BrowserRouter>
+      </HashRouter>
     </>
   )
 }

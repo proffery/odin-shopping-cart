@@ -12,10 +12,12 @@
     align-self: center;
     text-transform: capitalize;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .products {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 2rem;
     align-items: center;
