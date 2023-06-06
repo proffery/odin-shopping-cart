@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styles from './RouteSwitch.module.css'
 import './ActiveLink.css'
 import Home from '../screens/Home/Home'
@@ -13,7 +13,6 @@ import products from '../../products.json'
 import { Fade } from 'react-reveal'
 import {
   getAuth,
-  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -28,68 +27,63 @@ initializeApp(firebaseAppConfig);
 const RouteSwitch = () => {
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(eval(products))
-  // eslint-disable-next-line no-unused-vars
   const [itemsInCart, setItemsInCart] = useState([])
   const [cartVisibility, setCartVisibility] = useState('hidden')
-  //const [signInVisibility, setSignInVisibility] = useState('visible')
-  //const [signOutVisibility, setSignOutVisibility] = useState('hidden')
+  const [signInStatus, setSignInStatus] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   
-  useEffect(() => {
-
-}, [onAuthStateChanged])
-
+  
   async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider)
-      .then(console.log(getAuth().currentUser.displayName + ' is in'))
+    .then(setSignInStatus(!!getAuth().currentUser))
   }
-
-  function signOutUser() {
+  
+  async function signOutUser() {
     // Sign out of Firebase.
-    console.log(getAuth().currentUser.displayName + ' is out')
-    signOut(getAuth());
+    await signOut(getAuth())
+    .then(setSignInStatus(!!getAuth().currentUser))
   }
-
-  function isUserSignedIn() {
-    // Return true if a user is signed-in.
-    return !!getAuth().currentUser;
-  }
-
-  function getUserName() {
-    // Return the user's display name.
-    return getAuth().currentUser.displayName;
-  }
-
-  function getProfilePicUrl() {
-    // Return the user's profile pic URL.
-    return getAuth().currentUser.photoURL ||'/assets/img/category/default-category.svg';
-  }
-
+  
+  // function isUserSignedIn() {
+  //   // Return true if a user is signed-in.
+  //   return !!getAuth().currentUser;
+  // }
+    
+    function getUserName() {
+      // Return the user's display name.
+      return getAuth().currentUser.displayName;
+    }
+    
+    function getProfilePicUrl() {
+      // Return the user's profile pic URL.
+      return getAuth().currentUser.photoURL ||'/assets/img/category/default-category.svg';
+    }
+  
   const searchChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
+  
   const openCart = () => {
     cartVisibility === 'hidden' && setCartVisibility('visible')
   }
-
+  
   const closeCart = () => {
     cartVisibility === 'visible' && setCartVisibility('hidden')
   }
-
+  
   // const openCloseCart = () => {
-  //   cartVisibility === 'hidden' ? setCartVisibility('visible') : setCartVisibility('hidden')
+    //   cartVisibility === 'hidden' ? setCartVisibility('visible') : setCartVisibility('hidden')
   // }
-
+  
   const addToCart = (product) => {
     setItemsInCart([...itemsInCart, product])
     calculateTotalPrice()
   }
-
+  
   const deleteFromCart = (id) => {
     const index = itemsInCart.findIndex((item) => item.id === parseFloat(id))
     if (index !== -1) {
@@ -106,7 +100,7 @@ const RouteSwitch = () => {
       setTotalPrice(prev => prev + element.price)
     })
   }
-
+  
   return (
     <>
       <HashRouter>
@@ -123,11 +117,11 @@ const RouteSwitch = () => {
             </li>
           </ul>
           <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
-            {isUserSignedIn() ? (
+            {signInStatus ? (
               <div className={styles.userContainer}>
                 <div className={styles.userInfo}>
                   <img className={styles.userImg} src={getProfilePicUrl()} alt='User photo' />
-                  <h4>{getUserName()}</h4>
+                  <p>{getUserName()}</p>
                 </div>
                 <button onClick={signOutUser}>Sign out</button>
               </div>
