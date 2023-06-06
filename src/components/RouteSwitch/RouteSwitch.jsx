@@ -46,11 +46,6 @@ const RouteSwitch = () => {
     await signOut(getAuth())
     .then(setSignInStatus(!!getAuth().currentUser))
   }
-  
-  // function isUserSignedIn() {
-  //   // Return true if a user is signed-in.
-  //   return !!getAuth().currentUser;
-  // }
     
     function getUserName() {
       // Return the user's display name.
