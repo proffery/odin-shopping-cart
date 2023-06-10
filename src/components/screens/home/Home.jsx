@@ -8,7 +8,7 @@ const Home = () => {
             <div className={styles.header}>
                 <h2><Fade right big cascade>Welcome to online shop</Fade></h2>
                 <h2><Fade right big cascade></Fade></h2>
-                <p><Fade bottom cascade>Discover a wide range of products for every need</Fade></p>
+                <Fade bottom cascade><p>Discover a wide range of products for every need</p></Fade>
                 <NavLink to='/shop'><button type='button' className={styles.startShopping}>Shop</button></NavLink>
             </div>
         </div>

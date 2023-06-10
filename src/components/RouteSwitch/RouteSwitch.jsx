@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './RouteSwitch.module.css'
 import './ActiveLink.css'
 import Home from '../screens/Home/Home'
@@ -9,7 +9,6 @@ import ProductList from '../screens/productList/ProductList'
 import NotFound from '../screens/NotFound/NotFound'
 import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
-import products from '../../products.json'
 import { Fade } from 'react-reveal'
 import {
   getAuth,
@@ -18,16 +17,21 @@ import {
   signOut,
 } from 'firebase/auth'
 
-const RouteSwitch = () => {
+const RouteSwitch = (prop) => {
   // eslint-disable-next-line no-unused-vars
-  const [productList, setProductList] = useState(eval(products))
+  const [productList, setProductList] = useState(prop.prop.loadedData)
   const [itemsInCart, setItemsInCart] = useState([])
   const [cartVisibility, setCartVisibility] = useState('hidden')
   const [signInStatus, setSignInStatus] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   
-  
+  console.log(prop)
+
+  useEffect(() => {
+      prop.authStateChanged()
+  }, [signInStatus])
+
   async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new GoogleAuthProvider();
@@ -125,13 +129,13 @@ const RouteSwitch = () => {
             {itemsInCart.length > 0 && (
               <div className={styles.cartNum}>{itemsInCart.length}</div>
             )}
+              <Fade right when={cartVisibility === 'visible'}>
                 <div className={styles.bar} style={{
                   visibility: cartVisibility,
                 }}>
-                    <Fade right when={cartVisibility === 'visible'}>
                       <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
-                    </Fade>
                 </div>
+              </Fade>
           </div>
         </div>
         {searchInput.length > 0 ? 

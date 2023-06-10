@@ -54,5 +54,19 @@
         "description": "Car cosmetic KIT",
         "category": "car",
         "price": 75
+      },
+      {
+        "id": 8,
+        "title": "jeans",
+        "description": "blue classic XL",
+        "category": "clothing",
+        "price": 19
+      },
+      {
+        "id": 9,
+        "title": "Smart Watch",
+        "description": "3G, 4G, LTE, Bluetooth, Wi-Fi",
+        "category": "electronics",
+        "price": 203
       }
   ]
