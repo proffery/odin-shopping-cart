@@ -3,7 +3,7 @@
   position: fixed;
   flex-wrap: wrap;
   min-height: 3rem;
-  width: 100%;
+  width: 100vw;
   background-color: var(--background-color-main);
   text-align: left;
   align-items: center;

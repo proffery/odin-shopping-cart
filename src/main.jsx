@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import RouteSwitch from './components/RouteSwitch/RouteSwitch.jsx'
 import './index.css'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, setDoc, doc, updateDoc, query, orderBy, limit, getDocs, startAt, where } from 'firebase/firestore/lite';
+import { getFirestore, collection, setDoc, doc, updateDoc, getDocs } from 'firebase/firestore/lite';
 import { getFirebaseConfig } from '../src/firebase/firebase-config.jsx'
 import {
   getAuth,
@@ -34,13 +34,12 @@ function defaultData(db) {
 }
 
 async function saveData(data) {
-  // TODO 7: Push a new message to Cloud Firestore.
   try {
     await updateDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
     .then(console.log('Database seved!'));
   }
   catch(error) {
-    console.error('Error save to Firebase Database', error)
+    console.error('Error save to Firebase Database!', error)
   }
 }
 
@@ -53,6 +52,8 @@ async function loadData() {
   console.log('Database loaded!')
   return loadedData
 }
+
+
 
 async function authStateObserver(user) {
   const loadedData = await loadData()

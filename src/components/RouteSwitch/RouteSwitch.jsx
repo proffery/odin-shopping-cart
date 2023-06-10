@@ -7,6 +7,7 @@ import Shop from '../screens/Shop/Shop'
 import Contact from '../screens/contact/Contact'
 import ProductList from '../screens/productList/ProductList'
 import NotFound from '../screens/NotFound/NotFound'
+import Admin from '../screens/Admin/Admin'
 import Cart from '../Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import { Fade } from 'react-reveal'
@@ -16,6 +17,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth'
+import { collection, doc, getDoc, getFirestore} from "firebase/firestore"; 
 
 const RouteSwitch = (prop) => {
   // eslint-disable-next-line no-unused-vars
@@ -25,24 +27,30 @@ const RouteSwitch = (prop) => {
   const [signInStatus, setSignInStatus] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
+  const [isAdmin, setIsAdmin] = useState(false)
   
-  console.log(prop)
-
+  
+  const getAdminEmail = async() => {    
+    return (await getDoc(doc(getFirestore(), 'admin', 'email'))).data().email
+  }
+  
   useEffect(() => {
-      prop.authStateChanged()
-  }, [signInStatus])
-
+    prop.authStateChanged()
+  }, [signInStatus, isAdmin])
+  
   async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider)
     .then(setSignInStatus(!!getAuth().currentUser))
+    .then(await getAdminEmail() === prop.prop.user.email ? setIsAdmin(true) : setIsAdmin(false))
   }
   
   async function signOutUser() {
     // Sign out of Firebase.
     await signOut(getAuth())
     .then(setSignInStatus(!!getAuth().currentUser))
+    .then(await getAdminEmail() === prop.prop.user.email ? setIsAdmin(true) : setIsAdmin(false))
   }
     
     function getUserName() {
@@ -108,6 +116,11 @@ const RouteSwitch = (prop) => {
             <li>
               <NavLink to='/contact'>Contact</NavLink>
             </li>
+            {isAdmin && (
+              <li>
+                <NavLink to='/admin'>Admin</NavLink>
+              </li>
+            )}
           </ul>
           <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
             {signInStatus ? (
@@ -147,6 +160,9 @@ const RouteSwitch = (prop) => {
               <Route path='/shop' element={<Shop prop={{productList}}/>} />
               <Route path='/shop/:category' element={<ProductList prop={{productList, searchInput}} addToCart={addToCart}/>} />
               <Route path='/contact' element={<Contact />} />
+              {isAdmin && (
+                <Route path='/Admin' element={<Admin prop={{productList}} />} />
+              )}
               <Route path='*' element={<NotFound />} />
             </Routes>
           )
