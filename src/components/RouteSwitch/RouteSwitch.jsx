@@ -17,9 +17,11 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth'
-import { collection, doc, getDoc, getFirestore} from "firebase/firestore"; 
+import { collection, doc, getDoc, getFirestore, onSnapshot} from "firebase/firestore"; 
 
 const RouteSwitch = (prop) => {
+
+  console.log(prop)
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(prop.prop.loadedData)
   const [itemsInCart, setItemsInCart] = useState([])
@@ -28,7 +30,6 @@ const RouteSwitch = (prop) => {
   const [totalPrice, setTotalPrice] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-  
   
   const getAdminEmail = async() => {    
     return (await getDoc(doc(getFirestore(), 'admin', 'email'))).data().email
@@ -102,6 +103,14 @@ const RouteSwitch = (prop) => {
     })
   }
   
+  const saveForm = (formData) => {
+    prop.saveForm(formData)
+  }
+
+  const setToDefault = () => {
+    prop.setToDefault()
+  }
+
   return (
     <>
       <HashRouter>
@@ -161,7 +170,7 @@ const RouteSwitch = (prop) => {
               <Route path='/shop/:category' element={<ProductList prop={{productList, searchInput}} addToCart={addToCart}/>} />
               <Route path='/contact' element={<Contact />} />
               {isAdmin && (
-                <Route path='/Admin' element={<Admin prop={{productList}} />} />
+                <Route path='/Admin' element={<Admin prop={{productList}} saveForm={saveForm} setToDefault={setToDefault}/>} />
               )}
               <Route path='*' element={<NotFound />} />
             </Routes>

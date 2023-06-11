@@ -21,22 +21,24 @@ const authStateChanged = () => {
   authStateObserver
 }
 
-function defaultData(db) {
+function saveAllData(db) {
   db.map(async(data) => {
     try {
       await setDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
-        .then(console.log('Database is set to default!'));
-      }
+    }
     catch(error) {
-      console.error('Error set to default Firebase Database', error);
+      console.error('Error save to Firebase Database!', error)
     }
   })
+  console.log('Database saved!')
+  authStateObserver
 }
 
 async function saveData(data) {
   try {
     await updateDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
-    .then(console.log('Database seved!'));
+    .then(console.log('Database edited!'))
+    .then(authStateObserver)
   }
   catch(error) {
     console.error('Error save to Firebase Database!', error)
@@ -59,7 +61,7 @@ async function authStateObserver(user) {
   const loadedData = await loadData()
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <RouteSwitch prop={{user, loadedData}} authStateChanged={authStateChanged} />
+      <RouteSwitch prop={{user, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={saveAllData(products)}/>
     </React.StrictMode>
   )
 }
