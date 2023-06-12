@@ -24,6 +24,40 @@ const Admin = (prop) => {
         prop.setToDefault()
     }
 
+    const addProduct = () => {
+        function findFirstMissing(array, start, end) {
+            if (start > end) {
+                return end + 1
+            }
+            if (start != array[start]) {
+                return start
+            }
+            let mid = parseInt((start + end) / 2, 10)
+            if (array[mid] == mid) {
+                return findFirstMissing(array, mid + 1, end)
+            }
+            return findFirstMissing(array, start, mid)
+        }
+
+        function idList() {
+            let idList = []
+            prop.prop.productList.map(product => idList.push(product.id))
+            return idList.toSorted((a, b) => a - b)
+        }
+
+        setEditProduct({
+            id: findFirstMissing(idList(), 0, prop.prop.productList.length),
+            title: "",
+            description: "",
+            category: "",
+            price: 0
+        }) 
+    }
+
+    const deleteProduct = (e) => {
+        prop.deleteProduct(e.target.value)
+    }
+
     return (
         <div className={styles.container}>
             <h1 className={styles.header} ><Fade left cascade>ADMIN BOARD</Fade></h1>
@@ -41,15 +75,14 @@ const Admin = (prop) => {
                     </div>
                     <div className={styles.buttons}>
                         <button className={styles.edit} value={product.id} onClick={editProductForm}>Edit</button>
-                        <button className={styles.delete} value={product.id}>Delete</button>
+                        <button className={styles.delete} value={product.id} onClick={deleteProduct}>Delete</button>
                     </div>
                 </div>  
                 )}
             </div>
             <div className={styles.buttonsBottom}>
-                <button>New</button>
+                <button onClick={addProduct}>New</button>
                 <button onClick={setToDefault}>Default</button>
-                <button>Save DB</button>
             </div>
             {editProduct !== null && (<AdminForm prop={editProduct} saveForm={saveForm} closeForm={closeForm}/> )}
         </div>

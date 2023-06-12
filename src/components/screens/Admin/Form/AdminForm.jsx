@@ -6,7 +6,6 @@ const AdminForm = (prop) => {
     const [category, setCategory] = useState(prop.prop.category)
     const [price, setPrice] = useState(prop.prop.price)
     
-    console.log(prop)
     const titleChange = (e) => {
         e.preventDefault()
         setTitle(e.target.value)

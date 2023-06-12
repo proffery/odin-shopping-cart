@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import RouteSwitch from './components/RouteSwitch/RouteSwitch.jsx'
 import './index.css'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, setDoc, doc, updateDoc, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, setDoc, doc, getDocs, deleteDoc } from 'firebase/firestore/lite'
 import { getFirebaseConfig } from '../src/firebase/firebase-config.jsx'
 import {
   getAuth,
@@ -25,20 +25,20 @@ function saveAllData(db) {
   db.map(async(data) => {
     try {
       await setDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
+      .then(console.log('Database saved!'))
     }
     catch(error) {
       console.error('Error save to Firebase Database!', error)
     }
   })
-  console.log('Database saved!')
-  authStateObserver
+  
 }
 
 async function saveData(data) {
   try {
-    await updateDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
+    await setDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
     .then(console.log('Database edited!'))
-    .then(authStateObserver)
+
   }
   catch(error) {
     console.error('Error save to Firebase Database!', error)
@@ -55,30 +55,30 @@ async function loadData() {
   return loadedData
 }
 
+async function setToDefault() {
+  const allData = await loadData()
+  allData.forEach((doc) => {deleteProduct(doc.id)})
+  saveAllData(products)
+  console.log('Database set to default!')
+}
 
+async function deleteProduct(id) {
+  await deleteDoc(doc(getFirestore(), 'products', `${id}`))
+  .then(console.log(`Id: ${id} removed!`))
+}
 
 async function authStateObserver(user) {
   const loadedData = await loadData()
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <RouteSwitch prop={{user, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={saveAllData(products)}/>
+      <RouteSwitch prop={{user, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={setToDefault} deleteProduct={deleteProduct}/>
     </React.StrictMode>
   )
 }
 
-const firebaseAppConfig = getFirebaseConfig();
-initializeApp(firebaseAppConfig);
-initFirebaseAuth();
-//defaultData(products)
-// saveData({
-//       "id": 3,
-//       "title": "e-book",
-//       "description": "Kindle reader",
-//       "category": "electronics",
-//       "price": 183
-//     })
-//loadData()
-//console.log(products)
+const firebaseAppConfig = getFirebaseConfig()
+initializeApp(firebaseAppConfig)
+initFirebaseAuth()
 
 
 

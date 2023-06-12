@@ -21,7 +21,6 @@ import { collection, doc, getDoc, getFirestore, onSnapshot} from "firebase/fires
 
 const RouteSwitch = (prop) => {
 
-  console.log(prop)
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(prop.prop.loadedData)
   const [itemsInCart, setItemsInCart] = useState([])
@@ -111,6 +110,10 @@ const RouteSwitch = (prop) => {
     prop.setToDefault()
   }
 
+  const deleteProduct = (id) => {
+    prop.deleteProduct(id)
+  }
+
   return (
     <>
       <HashRouter>
@@ -170,7 +173,7 @@ const RouteSwitch = (prop) => {
               <Route path='/shop/:category' element={<ProductList prop={{productList, searchInput}} addToCart={addToCart}/>} />
               <Route path='/contact' element={<Contact />} />
               {isAdmin && (
-                <Route path='/Admin' element={<Admin prop={{productList}} saveForm={saveForm} setToDefault={setToDefault}/>} />
+                <Route path='/Admin' element={<Admin prop={{productList}} saveForm={saveForm} setToDefault={setToDefault} deleteProduct={deleteProduct}/>} />
               )}
               <Route path='*' element={<NotFound />} />
             </Routes>
