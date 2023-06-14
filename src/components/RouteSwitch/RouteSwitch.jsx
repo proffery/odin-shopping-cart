@@ -113,11 +113,14 @@ const RouteSwitch = (prop) => {
     prop.deleteProduct(id)
   }
 
+  const sliderChange = () => {
+    isAdmin ? setIsAdmin(false) : setIsAdmin(true)
+  }
   return (
     <>
       <HashRouter>
         <div className={styles.nav}>
-          <ul>
+          <ul className={styles.links}>
             <li>
               <NavLink to='/'>Home</NavLink>
             </li>
@@ -133,33 +136,41 @@ const RouteSwitch = (prop) => {
               </li>
             )}
           </ul>
-          <input type='text' placeholder='Search here' className={styles.search} value={searchInput} onChange={searchChange}></input>
-            {signInStatus ? (
-              <div className={styles.userContainer}>
-                <div className={styles.userInfo}>
-                  <img className={styles.userImg} src={getProfilePicUrl()} alt='User photo' />
-                  <p>{getUserName()}</p>
-                </div>
-                <button onClick={signOutUser}>Sign out</button>
+          <div className={styles.search}>
+            <input type='text' placeholder='Search here' className={styles.input} value={searchInput} onChange={searchChange}></input>
+          </div>
+          {signInStatus ? (
+            <div className={styles.userContainer}>
+              <div className={styles.userInfo}>
+                <img className={styles.userImg} src={getProfilePicUrl()} alt='User photo' />
+                <p>{getUserName()}</p>
               </div>
-              ) : (
-              <div className={styles.userContainer}>
-                <button onClick={signIn}>Sign in Google</button>
-              </div>
-            )}
-            
-            <div className={styles.cart} onClick={openCart}>
+              <button onClick={signOutUser}>Exit</button>
+            </div>
+            ) : (
+            <div className={styles.userContainer}>
+              <button onClick={signIn}>Sign in</button>
+            </div>
+          )}
+          <div className={styles.demo}>
+            <label htmlFor='demo'>DEMO</label>
+            <label className={styles.switch}>
+              <input className={styles.slider + '-input'} id='demo' type="checkbox" checked={isAdmin} onChange={sliderChange}/>
+              <span className={styles.slider + ' ' + styles.round}></span>
+            </label>
+          </div>
+          <div className={styles.cart} onClick={openCart}>
             <img className={styles.cartImg} src={imgCart} alt='Cart'></img>
             {itemsInCart.length > 0 && (
               <div className={styles.cartNum}>{itemsInCart.length}</div>
             )}
-              <Fade right when={cartVisibility === 'visible'}>
-                <div className={styles.bar} style={{
-                  visibility: cartVisibility,
-                }}>
-                      <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
-                </div>
-              </Fade>
+            <Fade right when={cartVisibility === 'visible'}>
+              <div className={styles.bar} style={{
+                visibility: cartVisibility,
+              }}>
+                <Cart prop={{itemsInCart, totalPrice}} closeCart={closeCart} deleteFromCart={deleteFromCart} calculateTotalPrice={calculateTotalPrice}/>
+              </div>
+            </Fade>
           </div>
         </div>
         {searchInput.length > 0 ? 

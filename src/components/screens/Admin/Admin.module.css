@@ -4,14 +4,11 @@
     align-items: center;
     justify-content: start;
     text-align: center;
-    padding: 1rem;
-    padding-top: 4rem;
+    padding-top: 7rem
 }
 
 .header {
     display: flex;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
 }
 
 .products {
@@ -70,4 +67,5 @@
 .buttonsBottom {
     display: flex;
     position: sticky;
+    z-index: 2;
 }

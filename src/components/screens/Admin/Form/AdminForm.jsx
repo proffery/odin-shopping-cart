@@ -51,21 +51,22 @@ const AdminForm = (prop) => {
 
     return (
         <form className={styles.form} onSubmit={saveForm}>
+            <h2 className={styles.header}>Fill in all the fields</h2>
             <div className={styles.group}>
                 <label htmlFor="id">ID:</label>
                 <input type="text" id="id" name={prop.prop.id} placeholder={prop.prop.id} readOnly/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="title">Title:</label>
-                <input type="text" id="title" name="title" value={title} onChange={titleChange} required/>
+                <input type="text" id="title" name="title" minLength={3} maxLength={10} value={title} onChange={titleChange} required/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="description">Description:</label>
-                <input type="text" id="description" name="description" value={description} onChange={descriptionChange} required/>
+                <input type="text" id="description" name="description" minLength={3} maxLength={20} value={description} onChange={descriptionChange} required/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="category">Category:</label>
-                <input type="text" id="category" name="category" value={category} onChange={categoryChange} required/>
+                <input type="text" id="category" name="category" minLength={3} maxLength={10} value={category} onChange={categoryChange} required/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="price">Price:</label>
@@ -73,7 +74,7 @@ const AdminForm = (prop) => {
             </div>
             <div className={styles.group}>
                 <label htmlFor="url">Image URL:</label>
-                <input type="text" id="url" name="url" value={url} onChange={urlChange} required/>
+                <input type="text" id="url" name="url" value={url} pattern='(.*png$)|(.*jpg$)|(.*jpeg$)' onChange={urlChange} required/>
             </div>
             <div>
                 <button type="submit">Save</button>

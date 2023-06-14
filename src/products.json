@@ -25,8 +25,8 @@
     },
     {
       "id": 3,
-      "title": "Kindle e-book",
-      "description": "Amazon Kindle reader",
+      "title": "e-book",
+      "description": "E-ink reader",
       "category": "electronics",
       "price": 183,
       "url": "./assets/img/products/prod3.jpg"
@@ -74,7 +74,7 @@
       {
         "id": 9,
         "title": "Smart Watch",
-        "description": "3G, 4G, LTE, Bluetooth, Wi-Fi",
+        "description": "Bluetooth, Wi-Fi",
         "category": "electronics",
         "price": 203,
         "url": "./assets/img/products/prod9.jpg"

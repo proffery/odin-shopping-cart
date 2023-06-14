@@ -19,3 +19,8 @@
     width: clamp(200px, 25rem, 80vw); 
     padding: .5rem;
 }
+
+.header {
+    display: flex;
+    align-self: center;
+}
