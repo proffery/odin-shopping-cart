@@ -69,11 +69,17 @@ async function deleteProduct(id) {
 
 async function authStateObserver(user) {
   const loadedData = await loadData()
+  let currentUser = user
+  currentUser = JSON.parse(localStorage.getItem('user'))
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <RouteSwitch prop={{user, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={setToDefault} deleteProduct={deleteProduct}/>
+      <RouteSwitch prop={{currentUser, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={setToDefault} deleteProduct={deleteProduct}/>
     </React.StrictMode>
   )
+  if (user) {
+    localStorage.setItem('user', JSON.stringify(user))
+    console.log(JSON.parse(localStorage.getItem('user')))
+  }
 }
 
 const firebaseAppConfig = getFirebaseConfig()

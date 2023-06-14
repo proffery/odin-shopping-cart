@@ -13,7 +13,7 @@ const Product = (prop) => {
         <div className={styles.container}>
             <Fade>
                 <div className={styles.imgHolder}>
-                    <img className={styles.img} src={'./assets/img/products/prod' + prop.prop.id + '.jpg'} alt={prop.prop.title}></img>
+                    <img className={styles.img} src={prop.prop.url} alt={prop.prop.title}></img>
                 </div>
             </Fade>
             <Fade top>

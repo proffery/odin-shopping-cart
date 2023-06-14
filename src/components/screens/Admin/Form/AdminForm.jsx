@@ -5,6 +5,7 @@ const AdminForm = (prop) => {
     const [description, setDescription] = useState(prop.prop.description)
     const [category, setCategory] = useState(prop.prop.category)
     const [price, setPrice] = useState(prop.prop.price)
+    const [url, setUrl] = useState(prop.prop.url)
     
     const titleChange = (e) => {
         e.preventDefault()
@@ -26,6 +27,11 @@ const AdminForm = (prop) => {
         setPrice(e.target.value)
     }
 
+    const urlChange = (e) => {
+        e.preventDefault()
+        setUrl(e.target.value)
+    }
+
     const saveForm = (e) => {
         e.preventDefault()
         const formData = {
@@ -33,7 +39,8 @@ const AdminForm = (prop) => {
             title: title,
             description: description,
             category: category,
-            price: price
+            price: price,
+            url: url
           }
         prop.saveForm(formData)
     }
@@ -63,6 +70,10 @@ const AdminForm = (prop) => {
             <div className={styles.group}>
                 <label htmlFor="price">Price:</label>
                 <input type="number" id="price" name="price" min={0} step={.01} value={price} onChange={priceChange} required/>
+            </div>
+            <div className={styles.group}>
+                <label htmlFor="url">Image URL:</label>
+                <input type="text" id="url" name="url" value={url} onChange={urlChange} required/>
             </div>
             <div>
                 <button type="submit">Save</button>

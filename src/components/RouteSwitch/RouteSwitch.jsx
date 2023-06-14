@@ -20,7 +20,6 @@ import {
 import { collection, doc, getDoc, getFirestore, onSnapshot} from "firebase/firestore"; 
 
 const RouteSwitch = (prop) => {
-
   // eslint-disable-next-line no-unused-vars
   const [productList, setProductList] = useState(prop.prop.loadedData)
   const [itemsInCart, setItemsInCart] = useState([])
@@ -43,7 +42,7 @@ const RouteSwitch = (prop) => {
     var provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider)
     .then(setSignInStatus(!!getAuth().currentUser))
-    .then(await getAdminEmail() === prop.prop.user.email ? setIsAdmin(true) : setIsAdmin(false))
+    .then(await getAdminEmail() === prop.prop.currentUser.email ? setIsAdmin(true) : setIsAdmin(false))
   }
   
   async function signOutUser() {

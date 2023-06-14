@@ -23,7 +23,7 @@ const Cart = (prop) => {
             {prop.prop.itemsInCart.map(product =>
                 <div className={styles.item} key={'cartProd' + uniqid()}>
                     <div className={styles.left}>
-                        <img className={styles.img} src={'./assets/img/products/prod' + product.id + '.jpg'} alt={product.title}/>
+                        <img className={styles.img} src={product.url} alt={product.title}/>
                         <div className={styles.description}>
                             <p>{product.title}</p>
                             <p>{product.description}</p>
