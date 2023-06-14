@@ -29,7 +29,7 @@
       "description": "Amazon Kindle reader",
       "category": "electronics",
       "price": 183,
-      "url": "/assets/img/products/prod3.jpg"
+      "url": "./assets/img/products/prod3.jpg"
     },
     {
       "id": 4,
