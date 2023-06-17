@@ -17,7 +17,6 @@ const Admin = (prop) => {
     }
 
     const sortByCategory = (e) => {
-        console.log(prop.prop.productList.filter(product => product.category.includes(e.target.alt)))
         setProductList(prop.prop.productList.filter(product => product.category.includes(e.target.alt)))
     }
     

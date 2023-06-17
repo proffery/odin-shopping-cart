@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import styles from './ProductList.module.css'
-import Product from './Product/Product'
+import Product from './Product/Product.jsx'
 import Fade from 'react-reveal/Fade'
 
 const ProductList = (prop) => {

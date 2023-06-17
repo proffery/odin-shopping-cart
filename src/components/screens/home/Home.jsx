@@ -6,8 +6,8 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h2><Fade right big cascade>Welcome to</Fade></h2>
-                <h2><Fade right big cascade>online shop</Fade></h2>
+                <h2><Fade left big cascade>Welcome to</Fade></h2>
+                <h2><Fade left big cascade>online shop</Fade></h2>
             
                 <Fade bottom>
                     <p>Discover a wide range of</p>
