@@ -46,6 +46,7 @@ async function saveData(data) {
 
 async function loadData() {
   let loadedData = []
+  // eslint-disable-next-line no-unused-vars
   const unsubscribe = onSnapshot(collection(getFirestore(), 'products'), (querySnapshot) => {
     querySnapshot.forEach((doc) => {
       loadedData.push(doc.data().data)

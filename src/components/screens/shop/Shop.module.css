@@ -50,8 +50,8 @@
     display: flex;
     height: 30vmin;
     width: 45vmin;
-    min-width: 12rem;
-    min-height: 8rem;
+    min-width: 18rem;
+    min-height: 13rem;
     pointer-events: none;
     background-image: url('/assets/img/category/default-category.svg');
     background-position: center;
@@ -59,3 +59,9 @@
     background-size: contain;
     box-shadow: var(--shadow);
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        font-size: calc(var(--main-font) + 15px);
+    }
+  }

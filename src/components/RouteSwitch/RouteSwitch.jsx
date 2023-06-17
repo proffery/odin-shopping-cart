@@ -8,7 +8,7 @@ import Contact from '../screens/contact/Contact'
 import ProductList from '../screens/productList/ProductList'
 import NotFound from '../screens/NotFound/NotFound'
 import Admin from '../screens/Admin/Admin'
-import Cart from '../Cart/Cart'
+import Cart from './Cart/Cart'
 import imgCart from '../../assets/img/cart-variant.svg'
 import { Fade } from 'react-reveal'
 import {

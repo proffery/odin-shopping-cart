@@ -19,20 +19,27 @@
     left: 50%;
     flex-direction: column;
     transform: translateY(-30%);
-    align-items: start;
-    justify-content:safe;
+    align-items: center;
+    justify-content: left;
     text-align: left;
 }
 
 .header h1, h2 {
     display: flex;
     text-align: left;
-    align-items: center;
     justify-content: left;
-    text-align: left;
     text-transform: uppercase;
 }
 
 .startShopping {
     margin-left: 0;
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        top: 50%;
+        left: 50%;
+        width: fit-content;
+        transform: translate(-50%, -50%);
+    }
+  }

@@ -46,9 +46,6 @@ const Contact = () => {
                                 <img className={styles.icon} src="./assets/img/icons/twitter.png" alt="twitter" />
                             </a>
                             <a href="">
-                                <img className={styles.icon} src="./assets/img/icons/whatsapp.png" alt="whatsapp" />
-                            </a>
-                            <a href="">
                                 <img className={styles.icon} src="./assets/img/icons/youtube.png" alt="youtube" />
                             </a>
                     </div>

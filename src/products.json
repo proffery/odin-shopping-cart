@@ -17,8 +17,8 @@
     },
     {
       "id": 2,
-      "title": "Pioneer DJ",
-      "description": "Professional DJ controller",
+      "title": "PRO DJ",
+      "description": "DJ controller",
       "category": "music",
       "price": 4100,
       "url": "./assets/img/products/prod2.jpg"
