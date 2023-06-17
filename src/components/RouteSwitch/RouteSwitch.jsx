@@ -17,7 +17,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth'
-import { collection, doc, getDoc, getFirestore, onSnapshot} from "firebase/firestore"; 
+import { doc, getDoc, getFirestore} from "firebase/firestore"; 
 
 const RouteSwitch = (prop) => {
   // eslint-disable-next-line no-unused-vars

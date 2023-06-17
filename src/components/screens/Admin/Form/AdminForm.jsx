@@ -58,7 +58,7 @@ const AdminForm = (prop) => {
             </div>
             <div className={styles.group}>
                 <label htmlFor="title">Title:</label>
-                <input type="text" id="title" name="title" minLength={3} maxLength={10} value={title} onChange={titleChange} required/>
+                <input type="text" id="title" name="title" minLength={3} maxLength={20} value={title} onChange={titleChange} required/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="description">Description:</label>

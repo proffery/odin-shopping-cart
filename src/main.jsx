@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom/client'
 import RouteSwitch from './components/RouteSwitch/RouteSwitch.jsx'
 import './index.css'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, setDoc, doc, getDocs, deleteDoc } from 'firebase/firestore/lite'
+import { getFirestore, collection, setDoc, doc, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { getFirebaseConfig } from '../src/firebase/firebase-config.jsx'
 import {
   getAuth,
   onAuthStateChanged
 } from 'firebase/auth'
 import products from './products.json'
-
 
 function initFirebaseAuth() {
   // Subscribe to the user's signed-in status
@@ -37,7 +36,7 @@ function saveAllData(db) {
 async function saveData(data) {
   try {
     await setDoc(doc(getFirestore(), 'products', `${data.id}`), {data})
-    .then(console.log('Database edited!'))
+    .then(console.log('Database edited!')).then(loadData())
 
   }
   catch(error) {
@@ -47,39 +46,41 @@ async function saveData(data) {
 
 async function loadData() {
   let loadedData = []
-  const querySnapshot = await getDocs(collection(getFirestore(), 'products'))
-  querySnapshot.forEach((doc) => {
-    loadedData.push(doc.data().data)
+  const unsubscribe = onSnapshot(collection(getFirestore(), 'products'), (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      loadedData.push(doc.data().data)
+    })
+    console.log('Database loaded!')
+    const currentUser = getAuth().currentUser
+    //const currentUser = localStorage.getItem('user')
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+        <RouteSwitch prop={{currentUser, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={setToDefault} deleteProduct={deleteProduct}/>
+      </React.StrictMode>
+    )
   })
-  console.log('Database loaded!')
   return loadedData
 }
 
 async function setToDefault() {
-  const allData = await loadData()
-  allData.forEach((doc) => {deleteProduct(doc.id)})
   saveAllData(products)
   console.log('Database set to default!')
+  await loadData()
 }
 
 async function deleteProduct(id) {
   await deleteDoc(doc(getFirestore(), 'products', `${id}`))
-  .then(console.log(`Id: ${id} removed!`))
+  .then(console.log(`Id: ${id} removed!`)).then(loadData())
 }
 
 async function authStateObserver(user) {
   const loadedData = await loadData()
-  let currentUser = user
-  currentUser = JSON.parse(localStorage.getItem('user'))
+  const currentUser = user
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <RouteSwitch prop={{currentUser, loadedData}} authStateChanged={authStateChanged} saveForm={saveData} setToDefault={setToDefault} deleteProduct={deleteProduct}/>
     </React.StrictMode>
   )
-  if (user) {
-    localStorage.setItem('user', JSON.stringify(user))
-    console.log(JSON.parse(localStorage.getItem('user')))
-  }
 }
 
 const firebaseAppConfig = getFirebaseConfig()
