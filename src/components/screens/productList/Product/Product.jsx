@@ -1,6 +1,6 @@
 import styles from './Product.module.css'
-import cartImg from '../../assets/img/cart-variant.svg'
-import cardImg from '../../assets/img/credit-card-outline.svg'
+import cartImg from '../../../../assets/img/cart-variant.svg'
+import cardImg from '../../../../assets/img/credit-card-outline.svg'
 import Fade from 'react-reveal/Fade'
 import Bounce from 'react-reveal/Bounce'
 
